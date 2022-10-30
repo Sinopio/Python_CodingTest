@@ -1,0 +1,63 @@
+#include <string>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+vector<int> cal_working_time(vector<int> _progresses, vector<int> _speeds)
+{
+    vector<int> workingTime;
+    //float time = 0.0f;
+    float time = ((100-30)/30);
+    float a = 0;
+    a = time % 1;
+    if(a != 0)
+    {
+        time++;
+    }
+    for(int i = 0; i < _progresses.size(); i++)
+    {
+        //time = ceil(((100 -_progresses[i]) / _speeds[i]));
+        //time = ceil(time);
+        workingTime.push_back(time);
+    }
+    
+    return workingTime;
+}
+
+vector<int> cal_deployment(vector<int> _working_time)
+{
+    int min = _working_time[0];
+    int deployNum = 0;
+    vector<int> deployment = {};
+        
+    for(int i = 0; i <= _working_time.size(); i++)
+    {
+        if(min >= _working_time[i])
+        {
+            deployNum++;
+            min = _working_time[i];
+        }
+        
+        else if (min < _working_time[i])
+        {
+            deployment.push_back(deployNum);
+            deployNum = 1;
+        }
+    }
+    
+    return deployment;
+}
+
+
+vector<int> solution(vector<int> progresses, vector<int> speeds)
+{
+    vector<int> answer;
+    vector<int> calWorkingTime;
+    
+    calWorkingTime = cal_working_time(progresses, speeds);
+    answer = calWorkingTime;
+    //answer = cal_deployment(calWorkingTime);
+    
+    return answer;
+}
