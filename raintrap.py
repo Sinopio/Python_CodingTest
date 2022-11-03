@@ -20,6 +20,7 @@ class Solution:
                 right -= 1
 
         return volume
+    
 if __name__ == "__main__":
     
     a = Solution()
